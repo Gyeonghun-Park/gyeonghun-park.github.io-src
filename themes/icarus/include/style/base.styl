@@ -4,12 +4,12 @@ bulma-stylus-root = '../../../../node_modules/bulma-stylus/stylus'
  *   Override Bulma CSS Framework
  * --------------------------------- */
 $body-size ?= 14px
-$body-background-color ?= #f7f7f7
+$body-background-color ?= #fff
 
-$family-sans-serif ?= Ubuntu, Roboto, 'Open Sans', 'Microsoft YaHei', sans-serif
+$family-sans-serif ?=  'Nanum Gothic', Ubuntu, Roboto, 'Open Sans', 'Microsoft YaHei', sans-serif;
 $family-code ?= 'Source Code Pro', monospace, 'Microsoft YaHei'
 
-$size-7 ?= .85rem
+$size-7 ?= .75rem
 $size-small ?= .75rem
 
 $primary ?= $blue
@@ -38,7 +38,7 @@ $button-padding-vertical ?= calc(0.375em - 1px)
 
 $card-radius ?= $radius
 $card-media-margin ?= 0.75rem
-$card-shadow ?= $shadow, 0 0 1px rgba(0, 0, 0, 0.1)
+$card-shadow ?= none
 
 $menu-item-active-color ?= $link
 $menu-item-active-background-color ?= hsl(219, 70%, 96%)
@@ -80,6 +80,97 @@ body
 body > .section
     flex-grow: 1
 
+[data-color-scheme="dark"]
+    color-scheme dark
+
+[data-color-scheme="light"]
+    color-scheme light
+body
+    & > section
+        & > div
+            & > div
+                & > div
+                    &.column
+                        & > div
+                            &:nth-child(1)
+                                & > div
+                                    & > div
+                                        &.level
+                                            &:nth-child(3)
+                                                display none
+
+.column-main
+    position relative
+    &::before
+        content ''
+        border-left 1px solid #e5e5e5
+        left 0
+        min-height 100%
+        width 100%
+        position absolute
+        top -30px
+
+@media screen and (max-width: 769px)
+    .column-left
+        &::before
+            display none
+
+.column-main
+    .card
+        border-bottom 1px solid #e5e5e5
+        margin-bottom 40px
+        border-radius 0
+
+.pagination-list
+    li
+        & > a
+            box-shadow 0 1px 0 0 #e5e5e5 !important
+
+.pagination-list > li > a,
+.pagination .pagination-previous,
+.pagination .pagination-next
+    box-shadow 0 1px 0 0 #e5e5e5, 0 0 1px rgba(0,0,0,0.1) !important
+    transition all 0.2s ease
+
+.pagination-list > li > a:hover,
+.pagination .pagination-previous:hover,
+.pagination .pagination-next:hover
+    background-color #3273dc
+    color #fff !important
+
+.pagination-list > li > a:hover a,
+.pagination .pagination-previous:hover a,
+.pagination .pagination-next:hover a
+    color inherit
+
+#back-to-top
+    box-shadow 0 1px 0 0 #e5e5e5, 0 0 1px rgba(0,0,0,0.1) !important
+
+.searchbox-input
+    background #fafafa !important
+
+.searchbox-body
+    background-color #fff !important
+    padding 10px 20px
+    .searchbox-result-preview
+        font-size small
+
+button
+    &.navbar-item
+        background none
+        outline none
+        border none
+        cursor pointer
+
+.utterances
+    max-width none
+
+.article-licensing
+    .licensing-title
+        p
+            &:not(:last-child)
+                margin-bottom 0.25rem !important
+                
 +desktop()
     ::-webkit-scrollbar
         width: 8px
