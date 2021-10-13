@@ -22,14 +22,6 @@
     transform: rotate(359deg);
   }
 }
-@keyframes spinAround {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(359deg);
-  }
-}
 .is-unselectable,
 .breadcrumb,
 .modal-close,
@@ -5822,14 +5814,6 @@ fieldset[disabled] .button {
     background-position: -200% 0;
   }
 }
-@keyframes moveIndeterminate {
-  from {
-    background-position: 200% 0;
-  }
-  to {
-    background-position: -200% 0;
-  }
-}
 .table {
   background-color: #fff;
   color: #363636;
@@ -10828,11 +10812,17 @@ button.navbar-item {
   border: none;
   margin-top: 0;
 }
+article.media .media-content {
+  color: #7a7a7a;
+}
 article.media .media-content .title {
   margin: 0;
   line-height: inherit;
 }
-
+article.article .article-meta,
+article.article .article-tags {
+  color: #7a7a7a;
+}
 article.article .article-meta {
   overflow-x: auto;
   margin-bottom: 0.5rem;
@@ -11678,4 +11668,68 @@ body.dark .searchbox a {
 }
 body.dark .breadcrumb li.is-active a {
   color: #d4d4d4;
+}
+@-moz-keyframes spinAround {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}
+@-webkit-keyframes spinAround {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}
+@-o-keyframes spinAround {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}
+@keyframes spinAround {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}
+@-moz-keyframes moveIndeterminate {
+  from {
+    background-position: 200% 0;
+  }
+  to {
+    background-position: -200% 0;
+  }
+}
+@-webkit-keyframes moveIndeterminate {
+  from {
+    background-position: 200% 0;
+  }
+  to {
+    background-position: -200% 0;
+  }
+}
+@-o-keyframes moveIndeterminate {
+  from {
+    background-position: 200% 0;
+  }
+  to {
+    background-position: -200% 0;
+  }
+}
+@keyframes moveIndeterminate {
+  from {
+    background-position: 200% 0;
+  }
+  to {
+    background-position: -200% 0;
+  }
 }
