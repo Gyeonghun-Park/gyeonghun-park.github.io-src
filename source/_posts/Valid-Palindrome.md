@@ -6,14 +6,19 @@ toc: true
 widgets:
   - type: toc
     position: left
+  - type: categories
+    position: right
 cover: /img/leetcode.png
 categories:
 ---
 
 </pre>
 <!--more-->
-asdasd
-asd
+
+## asdasd
+
+## asd
+
 asd
 asd
 

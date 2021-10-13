@@ -7,6 +7,8 @@ toc: true
 widgets:
   - type: toc
     position: left
+  - type: categories
+    position: right
 cover: /img/leetcode.png
 categories:
 ---
