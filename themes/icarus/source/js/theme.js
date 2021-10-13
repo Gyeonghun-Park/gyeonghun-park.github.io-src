@@ -1,9 +1,33 @@
 const btn = document.getElementById('toggleTheme');
+let nIntervId;
+
+const changeUtterancesTheme = () => {
+  const utterances = document.querySelector('iframe');
+  utterances?.contentWindow.postMessage(
+    document.body.classList.contains('dark')
+      ? {
+          type: 'set-theme',
+          theme: 'github-dark',
+        }
+      : {
+          type: 'set-theme',
+          theme: 'github-light',
+        },
+    'https://utteranc.es'
+  );
+
+  if (nIntervId && utterances) {
+    clearInterval(nIntervId);
+  }
+};
 
 function initTheme() {
   // chk local storage
   const theme = localStorage.getItem('theme');
   if (theme === 'dark') {
+    if (!nIntervId) {
+      nIntervId = setInterval(changeUtterancesTheme, 500);
+    }
     document.body.classList.add('dark');
     btn.innerText = '🌙';
     return;
@@ -15,19 +39,23 @@ function initTheme() {
 
   //   visit first time
   const isDark = window.matchMedia('(prefers-color-scheme: dark)');
-  if (isDark) document.body.classList.add('dark');
+  if (isDark) {
+    document.body.classList.add('dark');
+  }
 
+  changeUtterancesTheme();
   localStorage.setItem('theme', isDark ? 'dark' : 'light');
   btn.innerText = isDark ? '🌙' : '🌞';
 }
 
 function toggleTheme() {
-  console.log(`toggle theme`);
   document.body.classList.toggle('dark');
   localStorage.setItem(
     'theme',
     document.body.classList.contains('dark') ? 'dark' : 'light'
   );
+
+  changeUtterancesTheme();
   btn.innerText = document.body.classList.contains('dark') ? '🌙' : '🌞';
 }
 
