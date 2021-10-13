@@ -1,7 +1,6 @@
 ---
-title: { { title } }
-date: { { date } }
-categories:
+title: Valid Palindrome
+date: 2021-10-14 01:04:32
 tags: []
 toc: true
 widgets:
@@ -13,5 +12,9 @@ categories:
 
 </pre>
 <!--more-->
+asdasd
+asd
+asd
+asd
 
 <!--more-->

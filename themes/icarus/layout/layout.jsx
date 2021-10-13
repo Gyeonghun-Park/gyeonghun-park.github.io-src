@@ -10,14 +10,6 @@ const Search = require('./common/search');
 module.exports = class extends Component {
   render() {
     const { site, config, page, helper, body } = this.props;
-    let isArticle = false;
-    if (
-      body.includes(
-        'script src="https://utteranc.es/client.js" repo="Gyeonghun-Park/utterances" issue-term="pathname" label="Comment" theme="github-light" crossorigin="anonymous" async></script></div></div>'
-      )
-    ) {
-      isArticle = true;
-    }
 
     const language = page.lang || page.language || config.language;
     const columnCount = Widgets.getColumnCount(config.widgets, config, page);
@@ -48,7 +40,6 @@ module.exports = class extends Component {
                   helper={helper}
                   page={page}
                   position={'left'}
-                  isArticle={isArticle}
                 />
                 <Widgets
                   site={site}
@@ -56,7 +47,6 @@ module.exports = class extends Component {
                   helper={helper}
                   page={page}
                   position={'right'}
-                  isArticle={isArticle}
                 />
               </div>
             </div>

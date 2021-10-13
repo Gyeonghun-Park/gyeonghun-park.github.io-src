@@ -1756,9 +1756,10 @@ a.list-item {
   cursor: pointer;
 }
 .media {
-  align-items: flex-start;
-  display: flex;
-  text-align: left;
+  display: grid;
+}
+.media figure {
+  width: 50%;
 }
 .media .content:not(:last-child) {
   margin-bottom: 0.75rem;
@@ -1791,7 +1792,6 @@ a.list-item {
 .media-right {
   flex-basis: auto;
   flex-grow: 0;
-  flex-shrink: 0;
 }
 .media-left {
   margin-right: 1rem;
@@ -1804,6 +1804,9 @@ a.list-item {
   flex-grow: 1;
   flex-shrink: 1;
   text-align: left;
+}
+.media-content p {
+  font-size: 14px;
 }
 @media screen and (max-width: 768px) {
   .media-content {
