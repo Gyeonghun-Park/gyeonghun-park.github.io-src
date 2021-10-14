@@ -1,6 +1,6 @@
 ---
-title: { { title } }
-date: { { date } }
+title: {{ title }}
+date: {{ date }}
 categories:
 tags: []
 toc: true
@@ -9,8 +9,7 @@ widgets:
     position: left
   - type: categories
     position: right
-cover: /img/leetcode.png
-categories:
+cover: /img/
 ---
 
 </pre>
