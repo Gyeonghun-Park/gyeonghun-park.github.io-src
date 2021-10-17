@@ -15,7 +15,7 @@ categories: SQL
 </pre>
 <!--more-->
 
-## 조인의 종류
+## JOIN의 종류
 
 </pre>
 
