@@ -1,5 +1,5 @@
 ---
-title: Leetcode) 125. Valid Palindrome
+title: '[Leetcode] 125. Valid Palindrome'
 tags: [Leetcode, 'Coding Interview']
 toc: true
 widgets:
@@ -8,25 +8,27 @@ widgets:
   - type: categories
     position: right
 cover: /img/leetcode.png
-date: 2021-10-15 21:32:08
+date: 2021-12-06 21:32:08
 categories: ['Coding Interview', 'String Manipulation']
 ---
+
+</pre>
 
 <!--more-->
 
 ## 문제
 
-![Valid Palindrome Problem](/img/lc-125-p.png?style=centerme)
+![Valid Palindrome Problem](/img/lc_125/lc-125-p.png?style=centerme)
 
 > 주어진 문자열이 팰린드롬인지 확인하라. 대소문자를 구분하지 않으며, 영문자와 숫자만을 대상으로 한다.
 
 ## 예제
 
-![Valid Palindrome Example](/img/lc-125-e.png?style=centerme)
+![Valid Palindrome Example](/img/lc_125/lc-125-e.png?style=centerme)
 
 ## 제약
 
-![Valid Palindrome Constraints](/img/lc-125-c.png?style=centerme)
+![Valid Palindrome Constraints](/img/lc_125/lc-125-c.png?style=centerme)
 
 ## 풀이
 

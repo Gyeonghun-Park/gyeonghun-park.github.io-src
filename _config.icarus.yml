@@ -279,9 +279,11 @@ widgets:
     type: links
     # Names and URLs of the sites
     links:
-      Hexo: 'https://hexo.io'
-      Bulma: 'https://bulma.io'
-  # Google FeedBurner email subscription widget configurations
+      Medium: 'https://medium.com/'
+      Dev: 'https://dev.to/'
+      Leetcode: 'https://leetcode.com/'
+
+    # Google FeedBurner email subscription widget configurations
   - # Where should the widget be placed, left sidebar or right sidebar
     # position: left
     # type: subscribe_email
