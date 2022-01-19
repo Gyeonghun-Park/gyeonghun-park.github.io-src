@@ -17,6 +17,15 @@ categories: [Solidity, Security]
 <!--more-->
 
 <!--more-->
+[원문으로 가기](https://coinsbench.com/selfdestruct-hack-solidity-3-d68e87da9956)
+
+[Credit: Zuhaib Mohammed](https://zuhaibmd.medium.com/)
+
+이 포스트는 **Zuhaib Mohammed**가 작성한 **selfdestruct | Hack Solidity #3**를 번역한 내용이며, 임의로 첨삭한 부분이 있습니다.
+
+모든 번역 포스트는 원작자의 동의를 받아 번역을 진행하였습니다.
+
+---
 
 스마트 컨트랙트 개발자라면 스마트 컨트랙트에 ETH를 보내려면 `fallback` 함수가 있어야 한다는 사실을 알고 있을 겁니다. 하지만 이번 해킹에서는 우리는 `selfdestruct` 함수를 호출 하여 스마트 컨트랙트에 ether를 강제로 보내는 방법을 배웁니다.
 
