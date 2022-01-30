@@ -46,7 +46,7 @@ categories: [Solidity, Security]
 
 `HackMe` 컨트랙트의 소유자를 업데이트하기 위해, 악성 컨트랙트(`Attack`)로 부터 `abi.encodeWithSignature(“pwn()”)`를 통해 `pwn` 함수의 함수 시그니처(signature)를 전달합니다.
 
-먼저, `HackMe` 컨트랙트에서 `pwn` 함수에 대한 조회가 발생합니다. Attack 컨트랙트에는 `pwn` 함수가 없기 때문에 pwn 함수의 시그니처로 Lib 컨트랙트를 호출하는 HackMe의 `fallback` 함수가 트리거됩니다. `Lib` 컨트랙트에 pwn `함수` 정의가 있고 소유자가 msg.sender로 설정되어 있음을 알 수 있습니다. context-preservation에 의해 msg.sender가 이제 `HackMe` 계약의 소유자가 됩니다.
+먼저, `HackMe` 컨트랙트에서 `pwn` 함수에 대한 조회가 발생합니다. Attack 컨트랙트에는 `pwn` 함수가 없기 때문에 pwn 함수의 시그니처로 Lib 컨트랙트를 호출하는 HackMe의 `fallback` 함수가 트리거됩니다. `Lib` 컨트랙트에 pwn `함수` 정의가 있고 소유자가 msg.sender로 설정되어 있음을 알 수 있습니다. context-preservation에 의해 msg.sender가 이제 `HackMe` 컨트랙트의 소유자가 됩니다.
 
 
 
