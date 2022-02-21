@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>[Clean Code]클린코드 13장 동시성 - Gyeonghun&#039;s blog</title><link rel="manifest" href="/manifest.json"><meta name="theme-color" content="rgb(25,55,71)"><meta name="application-name" content="Gyeonghun&#039;s Blog"><meta name="msapplication-TileImage" content="/img/logo.png"><meta name="msapplication-TileColor" content="rgb(25,55,71)"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Gyeonghun&#039;s Blog"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content=""><meta property="og:type" content="blog"><meta property="og:title" content="[Clean Code]클린코드 13장 동시성"><meta property="og:url" content="https://gyeonghun-park.github.io/2022/02/11/%ED%81%B4%EB%A6%B0%EC%BD%94%EB%93%9C-13%EC%9E%A5-%EB%8F%99%EC%8B%9C%EC%84%B1/"><meta property="og:site_name" content="Gyeonghun&#039;s blog"><meta property="og:locale" content="ko_KR"><meta property="og:image" content="https://gyeonghun-park.github.io/img/clean_code.jpeg"><meta property="article:published_time" content="2022-02-11T03:37:35.000Z"><meta property="article:modified_time" content="2022-02-11T05:32:45.980Z"><meta property="article:author" content="Gyeonghun Park"><meta property="article:tag" content="Book"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="/img/clean_code.jpeg"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://gyeonghun-park.github.io/2022/02/11/%ED%81%B4%EB%A6%B0%EC%BD%94%EB%93%9C-13%EC%9E%A5-%EB%8F%99%EC%8B%9C%EC%84%B1/"},"headline":"[Clean Code]클린코드 13장 동시성","image":[],"datePublished":"2022-02-11T03:37:35.000Z","dateModified":"2022-02-11T05:32:45.980Z","author":{"@type":"Person","name":"Gyeonghun Park"},"publisher":{"@type":"Organization","name":"Gyeonghun's blog","logo":{"@type":"ImageObject","url":"https://gyeonghun-park.github.io/img/logo.png"}},"description":""}</script><link rel="canonical" href="https://gyeonghun-park.github.io/2022/02/11/%ED%81%B4%EB%A6%B0%EC%BD%94%EB%93%9C-13%EC%9E%A5-%EB%8F%99%EC%8B%9C%EC%84%B1/"><link rel="icon" href="/img/logo.png"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/vs2015.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css"><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script><!--!--><!--!--><meta name="generator" content="Hexo 5.4.0"></head><body class="is-3-column"><nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.png" alt="Gyeonghun&#039;s blog" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><button class="navbar-item" type="button" id="toggleTheme">hi</button><a class="navbar-item is-hidden-tablet catalogue" title="카탈로그" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="검색" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-9-tablet is-9-desktop is-6-widescreen"><div class="card"><div class="card-image"><span class="image is-7by3"><img class="fill" src="/img/clean_code.jpeg" alt="[Clean Code]클린코드 13장 동시성"></span></div><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2022-02-11T03:37:35.000Z" title="2/11/2022, 12:37:35 PM">2022-02-11</time>&nbsp;게시 됨</span><span class="level-item"><time dateTime="2022-02-11T05:32:45.980Z" title="2/11/2022, 2:32:45 PM">2022-02-11</time>&nbsp;업데이트 됨</span><span class="level-item"><a class="link-muted" href="/categories/Book/">Book</a></span><span class="level-item">13분안에 읽기 (약 1911 단어)</span></div></div><h1 class="title is-3 is-size-4-mobile">[Clean Code]클린코드 13장 동시성</h1><div class="content"><p></pre></p>
+<span id="more"></span>
+
+<!--more-->
+
+<h2 id="13장-동시성"><a href="#13장-동시성" class="headerlink" title="13장 동시성"></a><strong>13장 동시성</strong></h2><p>🔖 <code>읽은 범위</code> : 12장, 창발성 ~ 13장, 동시성</p>
+<hr>
+<h3 id="1-동시성-프로그래밍이란"><a href="#1-동시성-프로그래밍이란" class="headerlink" title="1. 동시성 프로그래밍이란"></a><strong>1. 동시성 프로그래밍이란</strong></h3><h4 id="1-동시성이-구현되지-않은-경우"><a href="#1-동시성이-구현되지-않은-경우" class="headerlink" title="1) 동시성이 구현되지 않은 경우"></a><code>1) 동시성이 구현되지 않은 경우</code></h4><ul>
+<li>서버(코어)가 클라이언트의 요청이 완료되도록 그저 기다리기 때문에 다른 작업이 실행되지 못한다.</li>
+</ul>
+<h4 id="2-병렬성을-구현한-경우-서버-증설"><a href="#2-병렬성을-구현한-경우-서버-증설" class="headerlink" title="2) 병렬성을 구현한 경우(서버 증설)"></a><code>2) 병렬성을 구현한 경우(서버 증설)</code></h4><ul>
+<li>서버의 수가 늘어나서 한번에 처리할 수 있는 작업의 수는 늘어났지만, 이 역시 받은 요청을 처리하는 동안 서버는 다른 작업을 하지 못한다.</li>
+</ul>
+<h4 id="3-동시성을-구현한-경우"><a href="#3-동시성을-구현한-경우" class="headerlink" title="3) 동시성을 구현한 경우"></a><code>3) 동시성을 구현한 경우</code></h4><ul>
+<li>클라이언트의 요청이 완료되지 않더라도 중간에 다른 작업을 할 수 있다.</li>
+<li>동시성을 구현하다고 해서 클라이언트의 입장에서 자신의 요청이 빨리 처리되는 것은 아니다.</li>
+<li>어플리케이션 입장에서 효율적으로 코어를 사용해 처리량이 높아지는 것이다.</li>
+<li>보통 cpu는 멀티 코어를 지원한다. 언어레벨에서 하드웨어의 멀티코어를 적절하게 사용하도록 지원하기 때문에 동시성만 신경써서 개발하면 된다.<ul>
+<li>더불어 내 어플리케이션이 동작하는 머신의 환경이 효율적을 돌아가도록 내 어플리케이션에 메모리 누수나 자원이 낭비되지 않도록 신경쓴다.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="2-동시성-프로그래밍이-필요한-이유"><a href="#2-동시성-프로그래밍이-필요한-이유" class="headerlink" title="2. 동시성 프로그래밍이 필요한 이유"></a><strong>2. 동시성 프로그래밍이 필요한 이유</strong></h3><h4 id="동시성-프로그래밍의-미신과-오해"><a href="#동시성-프로그래밍의-미신과-오해" class="headerlink" title="동시성 프로그래밍의 미신과 오해"></a><code>동시성 프로그래밍의 미신과 오해</code></h4><h5 id="1-동시성은-항상-X-때로-O-성능을-높여준다"><a href="#1-동시성은-항상-X-때로-O-성능을-높여준다" class="headerlink" title="(1) 동시성은 항상(X)/ 때로(O) 성능을 높여준다."></a><code>(1) 동시성은 항상(X)/ 때로(O) 성능을 높여준다.</code></h5><ul>
+<li>대기시간이 아주 길어 여러 스레드가 프로세서를 공유할 수 있거나, 여러 프로세서가 동시에 처리할 독립적인 계산이 충분히 많은 경우에만 성능이 높아지다.</li>
+<li>예1 : 웹 브라우저에서 여러가지 이미지 리소스들을 불러와 다운로드 할 때</li>
+<li>예2 : Servlet - 참고자료 : <a target="_blank" rel="noopener" href="https://medium.com/@wminikuma/java-servlet-dc81ab09139c">https://medium.com/@wminikuma/java-servlet-dc81ab09139c</a></li>
+</ul>
+<h5 id="2-동시성을-구현해도-설계는-변하지-않는다-X-설계를-바꿔야-한다-O"><a href="#2-동시성을-구현해도-설계는-변하지-않는다-X-설계를-바꿔야-한다-O" class="headerlink" title="(2) 동시성을 구현해도 설계는 변하지 않는다.(X) / 설계를 바꿔야 한다.(O"></a><code>(2) 동시성을 구현해도 설계는 변하지 않는다.(X) / 설계를 바꿔야 한다.(O</code></h5><ul>
+<li>단일 스레드 시스템과 다중 스레드 시스템은 설계가 판이하게 다르다.</li>
+<li>‘무엇’과 ‘언제’를 분리하면 시스템의 구조가 크게 달라진다.</li>
+</ul>
+<h5 id="3-Web이나-EJB와-같은-컨테이너를-사용해도-동시성을-이해해야한다-O"><a href="#3-Web이나-EJB와-같은-컨테이너를-사용해도-동시성을-이해해야한다-O" class="headerlink" title="(3) Web이나 EJB와 같은 컨테이너를 사용해도 동시성을 이해해야한다.(O)"></a><code>(3) Web이나 EJB와 같은 컨테이너를 사용해도 동시성을 이해해야한다.(O)</code></h5><ul>
+<li>어플리케이션을 컨테이너를 통해 멀티 쓰레드를 사용하는 것이기 때문에 컨테이너의 동작을 이해해야한다.</li>
+<li>동시 수정, 데드락 같은 문제를 피할 수 있는지를 알아야한다.</li>
+</ul>
+<hr>
+<h3 id="3-안전한-동시성-프로그래밍-규칙"><a href="#3-안전한-동시성-프로그래밍-규칙" class="headerlink" title="3. 안전한 동시성 프로그래밍 규칙"></a><strong>3. 안전한 동시성 프로그래밍 규칙</strong></h3><h4 id="1-단일-책임-원칙-SRP-설계"><a href="#1-단일-책임-원칙-SRP-설계" class="headerlink" title="1) 단일 책임 원칙(SRP) 설계"></a><code>1) 단일 책임 원칙(SRP) 설계</code></h4><p><code>동시성 관련 코드는 다른 코드와 분리하라.</code></p>
+<ul>
+<li>동시성 코드는 독자적인 개발, 변경, 조율 주기가 있다.</li>
+<li>동시성 코드에는 독자적인 난관이 있다. 다른 코드에서 겪는 난관과 다르며 훨씬 어렵다.</li>
+<li>잘못 구현한 동시성 코드는 별의별 방식으로 실패한다. 주변에 있는 다른 코드가 발목을 잡지 않더라도 동시성 하나만으로도 충분히 어렵다.</li>
+</ul>
+<h4 id="2-자료-범위를-제한하라"><a href="#2-자료-범위를-제한하라" class="headerlink" title="2) 자료 범위를 제한하라."></a><code>2) 자료 범위를 제한하라.</code></h4><p><code>공유 자료를 최대한 줄여라</code></p>
+<ul>
+<li>동시 수정 문제를 피하기 위해 객체를 사용하는 코드 내 임계영역을 synchronized 키워드로 보호하라</li>
+<li>보호할 임계영역을 빼먹거나, 모든 임계영역을 보호했는지 확인하느라 수고가 드므로 임계영역의 수를 최소화 해야 한다.</li>
+</ul>
+<h4 id="3-자료-사본을-사용하라"><a href="#3-자료-사본을-사용하라" class="headerlink" title="3) 자료 사본을 사용하라"></a><code>3) 자료 사본을 사용하라</code></h4><p><code>공유 자료를 줄이려면, 최대한 공유하지 않는 방법이 제일 좋다.</code></p>
+<ul>
+<li>객체를 복사해 읽기 전용으로 사용한다.</li>
+<li>각 스레드가 객체를 복사해 사용한 후 한 스레드가 해당 사본에서 결과를 가져온다.</li>
+<li>사본을 사용하는 방식으로 내부 잠금을 없애 수행 시간을 절약하는 것이 사본 생성과 가비지 컬렉션에 드는 부하를 상쇄할 가능성이 크다.</li>
+</ul>
+<h4 id="4-Thread는-가능한-독립적으로-구현한다"><a href="#4-Thread는-가능한-독립적으로-구현한다" class="headerlink" title="4) Thread는 가능한 독립적으로 구현한다."></a><code>4) Thread는 가능한 독립적으로 구현한다.</code></h4><p><code>다른 스레드와 자료를 공유하지 않는다.</code></p>
+<ul>
+<li>서블릿처럼 각 Thread는 클라이언트 요청 하나를 처리한다.</li>
+<li>모든 정보는 비공유 출처(client의 request)에서 가져오며 로컬 변수에 저장한다.</li>
+<li>각 서블릿은 마치 자신이 독자적인 시스템에서 동작하는 양 요청을 처리한다.</li>
+</ul>
+<h4 id="5-라이브러리를-이해하라"><a href="#5-라이브러리를-이해하라" class="headerlink" title="5) 라이브러리를 이해하라"></a><code>5) 라이브러리를 이해하라</code></h4><p><code>java.util.concurrent 패키지를 익혀라</code></p>
+<ul>
+<li>Thread Safe한 컬렉션을 사용한다.<ul>
+<li>ex) ConcurrnetHashMap, AtomicLong</li>
+</ul>
+</li>
+<li>서로 무관한 작업을 수행할 때는 executor 프레임워크를 사용한다.</li>
+<li>가능하다면 Thread가 Blocking되지 않는 방법을 사용한다.</li>
+</ul>
+<h4 id="6-동기화하는-메서드-사이에-존재하는-의존성을-이해하라"><a href="#6-동기화하는-메서드-사이에-존재하는-의존성을-이해하라" class="headerlink" title="6) 동기화하는 메서드 사이에 존재하는 의존성을 이해하라"></a><code>6) 동기화하는 메서드 사이에 존재하는 의존성을 이해하라</code></h4><p><code>공유 객체 하나에는 메서드 하나만 사용하라</code></p>
+<ul>
+<li>클라이언트 잠금<ul>
+<li>클라이언트에서 첫 번째 메서드를 호출하기 전에 서버를 잠근다. 마지막 메서드를 호출할 때까지 잠금을 유지한다.</li>
+<li>자원을 사용하는 클라이언트마다 synchronized 처리를 해줘야 하므로 비효율적이다.</li>
+</ul>
+</li>
+<li>서버에서 잠금<ul>
+<li>서버에다 “서버를 잠그고 모든 메서드를 호출한 후 잠금을 해제하는” 메서드를 구현한다. 클라이언트는 이 메서드를 호출하기만 하면 된다.</li>
+</ul>
+</li>
+<li>연결(Adapter) 서버<ul>
+<li>잠금을 수행하는 중간 단계를 생성한다.</li>
+<li>‘서버에서 잠금’ 방식과 유사하지만, 원래 서버는 변경하지 않는다.</li>
+<li>서버의 코드가 외부 코드라서 수정할 수 없을 때 우리 코드에서 Adapter를 만들어 사용한다.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="4-동시성-테스트-방법"><a href="#4-동시성-테스트-방법" class="headerlink" title="4. 동시성 테스트 방법"></a><strong>4. 동시성 테스트 방법</strong></h3><ul>
+<li>테스트를 했다고 동시성 코드가 100% 올바르다고 증명하기는 불가능하다. 하지만 충분한 테스트는 위험을 낮춘다.</li>
+</ul>
+<blockquote>
+<ul>
+<li>문제를 노출하는 테스트 케이스를 작성하라</li>
+<li>프로그램의 설정과 시스템 설정과 부하를 바꿔가면 자주 돌려라</li>
+<li>테스트가 실패하면 원인을 추적하라</li>
+<li>다시 돌렸더니 통과한다는 이유로 그냥 넘어가면 절대 안된다.</li>
+</ul>
+</blockquote>
+<h4 id="1-코드에-보조-코드를-넣어-돌려라"><a href="#1-코드에-보조-코드를-넣어-돌려라" class="headerlink" title="1) 코드에 보조 코드를 넣어 돌려라"></a><code>1) 코드에 보조 코드를 넣어 돌려라</code></h4><p><code>드물게 발생하는 오류를 자주 발생시키도록 보조 코드를 추가한다.</code></p>
+<ul>
+<li>코드에 wait(), sleap(), yield(), priority() 함수를 추가해 직접 구현한다.</li>
+<li>보조코드를 넣어주는 도구를 사용해 테스트한다.<ul>
+<li>다양한 위치에 ThreadJigglePoint.jiggle()을 추가해 무작위로 sleep(), yield()가 호출되도록 한다.</li>
+</ul>
+</li>
+<li>테스트 환경에서 보조 코드를 돌려본다.</li>
+</ul>
+<h4 id="2-동시성-코드를-실제-환경이-테스트-환경에서-돌려본다"><a href="#2-동시성-코드를-실제-환경이-테스트-환경에서-돌려본다" class="headerlink" title="2) 동시성 코드를 실제 환경이 테스트 환경에서 돌려본다."></a><code>2) 동시성 코드를 실제 환경이 테스트 환경에서 돌려본다.</code></h4><p><code>다양한 요청과 상황에서 동시성 코드가 정상적으로 동작하는지 확인한다.</code></p>
+<ul>
+<li>배포하기 전에 테스트 환경에서 충분히 오랜시간 검증한다.</li>
+<li>동시성 코드를 배포한 후에 모니터링을 통해 문제가 발생하는지 지켜본다.</li>
+</ul>
+</div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/Book/">Book</a></div><div class="sharethis-inline-share-buttons"></div><script src="https://platform-api.sharethis.com/js/sharethis.js#property=6165b42386572e0012d91e36&amp;product=inline-share-buttons" defer></script></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2022/02/12/%ED%81%B4%EB%A6%B0%EC%BD%94%EB%93%9C-14%EC%9E%A5-%EC%A0%90%EC%A7%84%EC%A0%81%EC%9D%B8-%EA%B0%9C%EC%84%A0/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">[Clean Code]클린코드 14장 점진적인 개선</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2022/02/10/%ED%81%B4%EB%A6%B0%EC%BD%94%EB%93%9C-12%EC%9E%A5-%EC%B0%BD%EB%B0%9C%EC%84%B1/"><span class="level-item">[Clean Code]클린코드 12장 창발성</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">댓글</h3><script src="https://utteranc.es/client.js" repo="Gyeonghun-Park/utterances" issue-term="pathname" label="Comment" theme="github-light" crossorigin="anonymous" async></script></div></div></div><div class="column column-left is-4-tablet is-4-desktop is-3-widescreen  order-1 is-sticky"><div class="card widget" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">카탈로그</h3><ul class="menu-list"><li><a class="level is-mobile" href="#13장-동시성"><span class="level-left"><span class="level-item">1</span><span class="level-item">13장 동시성</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#1-동시성-프로그래밍이란"><span class="level-left"><span class="level-item">1.1</span><span class="level-item">1. 동시성 프로그래밍이란</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#1-동시성이-구현되지-않은-경우"><span class="level-left"><span class="level-item">1.1.1</span><span class="level-item">1) 동시성이 구현되지 않은 경우</span></span></a></li><li><a class="level is-mobile" href="#2-병렬성을-구현한-경우-서버-증설"><span class="level-left"><span class="level-item">1.1.2</span><span class="level-item">2) 병렬성을 구현한 경우(서버 증설)</span></span></a></li><li><a class="level is-mobile" href="#3-동시성을-구현한-경우"><span class="level-left"><span class="level-item">1.1.3</span><span class="level-item">3) 동시성을 구현한 경우</span></span></a></li></ul></li><li><a class="level is-mobile" href="#2-동시성-프로그래밍이-필요한-이유"><span class="level-left"><span class="level-item">1.2</span><span class="level-item">2. 동시성 프로그래밍이 필요한 이유</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#동시성-프로그래밍의-미신과-오해"><span class="level-left"><span class="level-item">1.2.1</span><span class="level-item">동시성 프로그래밍의 미신과 오해</span></span></a></li></ul></li><li><a class="level is-mobile" href="#3-안전한-동시성-프로그래밍-규칙"><span class="level-left"><span class="level-item">1.3</span><span class="level-item">3. 안전한 동시성 프로그래밍 규칙</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#1-단일-책임-원칙-SRP-설계"><span class="level-left"><span class="level-item">1.3.1</span><span class="level-item">1) 단일 책임 원칙(SRP) 설계</span></span></a></li><li><a class="level is-mobile" href="#2-자료-범위를-제한하라"><span class="level-left"><span class="level-item">1.3.2</span><span class="level-item">2) 자료 범위를 제한하라.</span></span></a></li><li><a class="level is-mobile" href="#3-자료-사본을-사용하라"><span class="level-left"><span class="level-item">1.3.3</span><span class="level-item">3) 자료 사본을 사용하라</span></span></a></li><li><a class="level is-mobile" href="#4-Thread는-가능한-독립적으로-구현한다"><span class="level-left"><span class="level-item">1.3.4</span><span class="level-item">4) Thread는 가능한 독립적으로 구현한다.</span></span></a></li><li><a class="level is-mobile" href="#5-라이브러리를-이해하라"><span class="level-left"><span class="level-item">1.3.5</span><span class="level-item">5) 라이브러리를 이해하라</span></span></a></li><li><a class="level is-mobile" href="#6-동기화하는-메서드-사이에-존재하는-의존성을-이해하라"><span class="level-left"><span class="level-item">1.3.6</span><span class="level-item">6) 동기화하는 메서드 사이에 존재하는 의존성을 이해하라</span></span></a></li></ul></li><li><a class="level is-mobile" href="#4-동시성-테스트-방법"><span class="level-left"><span class="level-item">1.4</span><span class="level-item">4. 동시성 테스트 방법</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#1-코드에-보조-코드를-넣어-돌려라"><span class="level-left"><span class="level-item">1.4.1</span><span class="level-item">1) 코드에 보조 코드를 넣어 돌려라</span></span></a></li><li><a class="level is-mobile" href="#2-동시성-코드를-실제-환경이-테스트-환경에서-돌려본다"><span class="level-left"><span class="level-item">1.4.2</span><span class="level-item">2) 동시성 코드를 실제 환경이 테스트 환경에서 돌려본다.</span></span></a></li></ul></li></ul></li></ul></div></div><style>#toc .menu-list > li > a.is-active + .menu-list { display: block; }#toc .menu-list > li > a + .menu-list { display: none; }</style><script src="/js/toc.js" defer></script></div><div class="column-right-shadow is-hidden-widescreen"></div></div><div class="column column-right is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only order-3"><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">카테고리</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/Blockchain/"><span class="level-start"><span class="level-item">Blockchain</span></span><span class="level-end"><span class="level-item tag">15</span></span></a></li><li><a class="level is-mobile" href="/categories/Book/"><span class="level-start"><span class="level-item">Book</span></span><span class="level-end"><span class="level-item tag">14</span></span></a></li><li><a class="level is-mobile" href="/categories/Coding-Interview/"><span class="level-start"><span class="level-item">Coding Interview</span></span><span class="level-end"><span class="level-item tag">1</span></span></a><ul><li><a class="level is-mobile" href="/categories/Coding-Interview/String-Manipulation/"><span class="level-start"><span class="level-item">String Manipulation</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/Solidity/"><span class="level-start"><span class="level-item">Solidity</span></span><span class="level-end"><span class="level-item tag">16</span></span></a><ul><li><a class="level is-mobile" href="/categories/Solidity/Security/"><span class="level-start"><span class="level-item">Security</span></span><span class="level-end"><span class="level-item tag">14</span></span></a></li></ul></li></ul></div></div></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.png" alt="Gyeonghun&#039;s blog" height="28"></a><p class="is-size-7"><span>&copy; 2022 Gyeonghun Park</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("ko");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="맨 위로" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "이 웹 사이트는 귀하의 경험을 향상시키기 위해 Cookie를 사용합니다.",
+          dismiss: "무시",
+          allow: "허용",
+          deny: "거부",
+          link: "더 알아보기",
+          policy: "Cookie 정책",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><script src="/js/theme.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="입력 하세요..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"입력 하세요...","untitled":"(제목 없음)","posts":"포스트","pages":"페이지","categories":"카테고리","tags":"태그"});
+        });</script><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"superSample":2,"width":150,"height":300,"position":"right","hOffset":0,"vOffset":-20},"mobile":{"show":false,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.2},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body></html>

@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>[Clean Code]클린코드 11장 시스템 - Gyeonghun&#039;s blog</title><link rel="manifest" href="/manifest.json"><meta name="theme-color" content="rgb(25,55,71)"><meta name="application-name" content="Gyeonghun&#039;s Blog"><meta name="msapplication-TileImage" content="/img/logo.png"><meta name="msapplication-TileColor" content="rgb(25,55,71)"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Gyeonghun&#039;s Blog"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content=""><meta property="og:type" content="blog"><meta property="og:title" content="[Clean Code]클린코드 11장 시스템"><meta property="og:url" content="https://gyeonghun-park.github.io/2022/02/09/%ED%81%B4%EB%A6%B0%EC%BD%94%EB%93%9C-11%EC%9E%A5-%EC%8B%9C%EC%8A%A4%ED%85%9C/"><meta property="og:site_name" content="Gyeonghun&#039;s blog"><meta property="og:locale" content="ko_KR"><meta property="og:image" content="https://gyeonghun-park.github.io/img/clean_code.jpeg"><meta property="article:published_time" content="2022-02-09T08:29:28.000Z"><meta property="article:modified_time" content="2022-02-10T07:07:43.776Z"><meta property="article:author" content="Gyeonghun Park"><meta property="article:tag" content="Book"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="/img/clean_code.jpeg"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://gyeonghun-park.github.io/2022/02/09/%ED%81%B4%EB%A6%B0%EC%BD%94%EB%93%9C-11%EC%9E%A5-%EC%8B%9C%EC%8A%A4%ED%85%9C/"},"headline":"[Clean Code]클린코드 11장 시스템","image":[],"datePublished":"2022-02-09T08:29:28.000Z","dateModified":"2022-02-10T07:07:43.776Z","author":{"@type":"Person","name":"Gyeonghun Park"},"publisher":{"@type":"Organization","name":"Gyeonghun's blog","logo":{"@type":"ImageObject","url":"https://gyeonghun-park.github.io/img/logo.png"}},"description":""}</script><link rel="canonical" href="https://gyeonghun-park.github.io/2022/02/09/%ED%81%B4%EB%A6%B0%EC%BD%94%EB%93%9C-11%EC%9E%A5-%EC%8B%9C%EC%8A%A4%ED%85%9C/"><link rel="icon" href="/img/logo.png"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/vs2015.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css"><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script><!--!--><!--!--><meta name="generator" content="Hexo 5.4.0"></head><body class="is-3-column"><nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.png" alt="Gyeonghun&#039;s blog" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><button class="navbar-item" type="button" id="toggleTheme">hi</button><a class="navbar-item is-hidden-tablet catalogue" title="카탈로그" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="검색" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-9-tablet is-9-desktop is-6-widescreen"><div class="card"><div class="card-image"><span class="image is-7by3"><img class="fill" src="/img/clean_code.jpeg" alt="[Clean Code]클린코드 11장 시스템"></span></div><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2022-02-09T08:29:28.000Z" title="2/9/2022, 5:29:28 PM">2022-02-09</time>&nbsp;게시 됨</span><span class="level-item"><time dateTime="2022-02-10T07:07:43.776Z" title="2/10/2022, 4:07:43 PM">2022-02-10</time>&nbsp;업데이트 됨</span><span class="level-item"><a class="link-muted" href="/categories/Book/">Book</a></span><span class="level-item">7분안에 읽기 (약 1083 단어)</span></div></div><h1 class="title is-3 is-size-4-mobile">[Clean Code]클린코드 11장 시스템</h1><div class="content"><p></pre></p>
+<span id="more"></span>
+
+<!--more-->
+
+<h2 id="11장-시스템"><a href="#11장-시스템" class="headerlink" title="11장 시스템"></a><strong>11장 시스템</strong></h2><p>🔖 <code>읽은 범위</code> : 10장, 클래스 ~ 11장, 시스템</p>
+<hr>
+<h3 id="1-관심사-분리"><a href="#1-관심사-분리" class="headerlink" title="1. 관심사 분리"></a><strong>1. 관심사 분리</strong></h3><ul>
+<li>construction(생성)과 use(사용)은 아주 다르다.</li>
+<li>소프트웨어 시스템은 (어플리케이션 객체를 제작하고 의존성을 서로 ‘연결’하는) 준비 과정과 (준비 과정 이후에 이어지는) 런타임 로직을 분리해야 한다.</li>
+<li>객체의 생성과 객체를 사용하는 부분을 분리한다.</li>
+</ul>
+<h4 id="1-시작에-대한-관심사-분리"><a href="#1-시작에-대한-관심사-분리" class="headerlink" title="1) 시작에 대한 관심사 분리"></a><code>1) 시작에 대한 관심사 분리</code></h4><ul>
+<li>객체의 생성은 시작 단계에서, 비즈니스 로직은 객체를 사용하는데 집중한다.</li>
+<li>시작 단계는 모든 어플리케이션이 풀어야할 관심사이다.</li>
+<li>main 함수에서 시스템에 필요한 객체를 생성한 후 어플리케이션에 넘긴다.</li>
+<li>어플리케이션은 그저 만들어진 객체를 사용한다.</li>
+<li>모든 객체가 잘 생성되었다고 가정하고, 객체를 이용한 개발에 집중할 수 있다.</li>
+</ul>
+<p><img src="/img/%ED%81%B4%EB%A6%B0%EC%BD%94%EB%93%9C-11%EC%9E%A5-%EC%8B%9C%EC%8A%A4%ED%85%9C/1.png?style=centerme" alt="Separating construction"></p>
+<h4 id="2-요청에-대한-관심사-분리"><a href="#2-요청에-대한-관심사-분리" class="headerlink" title="2) 요청에 대한 관심사 분리"></a><code>2) 요청에 대한 관심사 분리</code></h4><p><code>Filter, Interceptor, AOP</code></p>
+<ul>
+<li>서블릿 필터는 Dispatcher Servlet 이전에 실행이 되는데, 요청 내용을 변경하거나 요청을 처리하기 전에 작업을 수행할 수 있다.</li>
+<li>Filter와 Interceptor는 Servlet 단위에서 실행된다. 반면 AOP 는 메소드 앞에서 Proxy 패턴으로 실행된다.</li>
+<li>인터셉터는 여러 개를 사용할 수 있고 로그인 처리, 권한 체크, 프로그램 실행시간 계산작업, 로그 확인 등의 업무 처리에 활용된다.</li>
+<li>AOP는 메서드 앞에서 Proxy 패턴으로 실행된다. 주로 ‘로깅’, ‘트랜잭션’, ‘에러처리’ 등 비즈니스 단의 메서드에서 조금 더 세밀하게 조정하고 싶을 때 사용한다. AOP는 주소, 파라미터, 어노테이션 등 다양한 방법으로 대상을 지정할 수 있다.</li>
+</ul>
+<p><img src="/img/%ED%81%B4%EB%A6%B0%EC%BD%94%EB%93%9C-11%EC%9E%A5-%EC%8B%9C%EC%8A%A4%ED%85%9C/2.png?style=centerme" alt="Filter, Interceptor, AOP"></p>
+<hr>
+<h3 id="2-Dependency-Injection-의존성-주입"><a href="#2-Dependency-Injection-의존성-주입" class="headerlink" title="2. Dependency Injection(의존성 주입)"></a><strong>2. Dependency Injection(의존성 주입)</strong></h3><ul>
+<li>객체 의존성을 DI 컨테이너에 맡긴다.</li>
+<li>Setter 메소드 or 생성자 인수를 통해 의존성을 주입한다.</li>
+<li>DI 컨테이너는 요청이 들어올 때 필요한 객체의 인스턴스를 만든 후 의존성을 설정한다.</li>
+<li>예 : Spring IOC Container</li>
+</ul>
+<p><img src="/img/%ED%81%B4%EB%A6%B0%EC%BD%94%EB%93%9C-11%EC%9E%A5-%EC%8B%9C%EC%8A%A4%ED%85%9C/3.png?style=centerme"></p>
+<h4 id="Sprint-IOC-Container"><a href="#Sprint-IOC-Container" class="headerlink" title="Sprint IOC Container"></a><code>Sprint IOC Container</code></h4><ul>
+<li>객체 의존성을 DI 컨테이너에 맡긴다.</li>
+<li>DI 컨테이너가 객체를 알아서 wiring 해준다.</li>
+</ul>
+<p><img src="/img/%ED%81%B4%EB%A6%B0%EC%BD%94%EB%93%9C-11%EC%9E%A5-%EC%8B%9C%EC%8A%A4%ED%85%9C/4.png?style=centerme"></p>
+<hr>
+<h3 id="3-Cross-Cutting-Concerns-횡단-관심-분리"><a href="#3-Cross-Cutting-Concerns-횡단-관심-분리" class="headerlink" title="3. Cross Cutting Concerns(횡단 관심 분리)"></a><strong>3. Cross Cutting Concerns(횡단 관심 분리)</strong></h3><ul>
+<li>비즈니스 로직(핵심 관심사) 외에 Logging, Transaction 관리, Security 등 신경써야 할 관심사들이 많다.</li>
+<li>관심사들은 많은 어플리케이션 레이어에 퍼져있는데, 이 관심사들을 분리해 처리하는 것이 효율적이다.<ul>
+<li>비즈니스 로직(핵심 관심사)에 집중할 수 있게 된다.</li>
+</ul>
+</li>
+</ul>
+<p><img src="/img/%ED%81%B4%EB%A6%B0%EC%BD%94%EB%93%9C-11%EC%9E%A5-%EC%8B%9C%EC%8A%A4%ED%85%9C/5.png?style=centerme"></p>
+<p>before</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> Response <span class="title">executeBusinessLogic</span><span class="params">(Request request)</span> </span>&#123;</span><br><span class="line">  <span class="comment">// 공통 기능</span></span><br><span class="line">  checkAuth(request);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 비즈니스 로직</span></span><br><span class="line">  Response response = businesslogic(userName, message);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 공통 기능</span></span><br><span class="line">  logging(response);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>after</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> Response <span class="title">executeBusinessLogic</span><span class="params">(Request request)</span> </span>&#123;</span><br><span class="line">  <span class="comment">// 비즈니스 로직</span></span><br><span class="line">  Response response = businesslogic(userName, message);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 공통 기능은 별도의 코드에서 관리한다.</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="해결-방법"><a href="#해결-방법" class="headerlink" title="해결 방법"></a><code>해결 방법</code></h4><ol>
+<li>자바 프록시<ul>
+<li>단순한 상황에 적합하다.</li>
+<li>개별 객체나 클래스에서 메서드 호출을 감싸는 경우가 좋은 예다.</li>
+</ul>
+</li>
+<li>순수 자바 AOP 프레임워크<ul>
+<li>대부분의 프록시 코드는 판박이라 도구로 자동화할 수 있다.</li>
+<li>순수 자바 관점을 구현하는 스프링 AOP, JBoss AOP 프레임 워크는 내부적으로 프록시를 사용한다.</li>
+<li>설정 파일이나 API를 사용해 객체의 역할을 설정한다.</li>
+<li>객체를 얻어올 때는 (XML 파일에 설정했던 DI 컨테이너에게 객체를 요청(getBean)한다.</li>
+</ul>
+</li>
+<li>EJB3 - JPA같은 객체 영속성 관리 표준 API<ul>
+<li>모든 정보가 annotation 속에 있어서 코드 자체가 깔끔하고 가독성이 좋다.</li>
+<li>annotation에 있는 영속성 정보 전부 또는 일부를 XML 설정으로 옮겨도 된다.(실무에서는 annotation 사용을 선호)</li>
+</ul>
+</li>
+</ol>
+</div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/Book/">Book</a></div><div class="sharethis-inline-share-buttons"></div><script src="https://platform-api.sharethis.com/js/sharethis.js#property=6165b42386572e0012d91e36&amp;product=inline-share-buttons" defer></script></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2022/02/10/%ED%81%B4%EB%A6%B0%EC%BD%94%EB%93%9C-12%EC%9E%A5-%EC%B0%BD%EB%B0%9C%EC%84%B1/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">[Clean Code]클린코드 12장 창발성</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2022/02/08/%ED%81%B4%EB%A6%B0%EC%BD%94%EB%93%9C-10%EC%9E%A5-%ED%81%B4%EB%9E%98%EC%8A%A4/"><span class="level-item">[Clean Code]클린코드 10장 클래스</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">댓글</h3><script src="https://utteranc.es/client.js" repo="Gyeonghun-Park/utterances" issue-term="pathname" label="Comment" theme="github-light" crossorigin="anonymous" async></script></div></div></div><div class="column column-left is-4-tablet is-4-desktop is-3-widescreen  order-1 is-sticky"><div class="card widget" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">카탈로그</h3><ul class="menu-list"><li><a class="level is-mobile" href="#11장-시스템"><span class="level-left"><span class="level-item">1</span><span class="level-item">11장 시스템</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#1-관심사-분리"><span class="level-left"><span class="level-item">1.1</span><span class="level-item">1. 관심사 분리</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#1-시작에-대한-관심사-분리"><span class="level-left"><span class="level-item">1.1.1</span><span class="level-item">1) 시작에 대한 관심사 분리</span></span></a></li><li><a class="level is-mobile" href="#2-요청에-대한-관심사-분리"><span class="level-left"><span class="level-item">1.1.2</span><span class="level-item">2) 요청에 대한 관심사 분리</span></span></a></li></ul></li><li><a class="level is-mobile" href="#2-Dependency-Injection-의존성-주입"><span class="level-left"><span class="level-item">1.2</span><span class="level-item">2. Dependency Injection(의존성 주입)</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#Sprint-IOC-Container"><span class="level-left"><span class="level-item">1.2.1</span><span class="level-item">Sprint IOC Container</span></span></a></li></ul></li><li><a class="level is-mobile" href="#3-Cross-Cutting-Concerns-횡단-관심-분리"><span class="level-left"><span class="level-item">1.3</span><span class="level-item">3. Cross Cutting Concerns(횡단 관심 분리)</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#해결-방법"><span class="level-left"><span class="level-item">1.3.1</span><span class="level-item">해결 방법</span></span></a></li></ul></li></ul></li></ul></div></div><style>#toc .menu-list > li > a.is-active + .menu-list { display: block; }#toc .menu-list > li > a + .menu-list { display: none; }</style><script src="/js/toc.js" defer></script></div><div class="column-right-shadow is-hidden-widescreen"></div></div><div class="column column-right is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only order-3"><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">카테고리</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/Blockchain/"><span class="level-start"><span class="level-item">Blockchain</span></span><span class="level-end"><span class="level-item tag">15</span></span></a></li><li><a class="level is-mobile" href="/categories/Book/"><span class="level-start"><span class="level-item">Book</span></span><span class="level-end"><span class="level-item tag">14</span></span></a></li><li><a class="level is-mobile" href="/categories/Coding-Interview/"><span class="level-start"><span class="level-item">Coding Interview</span></span><span class="level-end"><span class="level-item tag">1</span></span></a><ul><li><a class="level is-mobile" href="/categories/Coding-Interview/String-Manipulation/"><span class="level-start"><span class="level-item">String Manipulation</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/Solidity/"><span class="level-start"><span class="level-item">Solidity</span></span><span class="level-end"><span class="level-item tag">16</span></span></a><ul><li><a class="level is-mobile" href="/categories/Solidity/Security/"><span class="level-start"><span class="level-item">Security</span></span><span class="level-end"><span class="level-item tag">14</span></span></a></li></ul></li></ul></div></div></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.png" alt="Gyeonghun&#039;s blog" height="28"></a><p class="is-size-7"><span>&copy; 2022 Gyeonghun Park</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("ko");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="맨 위로" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "이 웹 사이트는 귀하의 경험을 향상시키기 위해 Cookie를 사용합니다.",
+          dismiss: "무시",
+          allow: "허용",
+          deny: "거부",
+          link: "더 알아보기",
+          policy: "Cookie 정책",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><script src="/js/theme.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="입력 하세요..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"입력 하세요...","untitled":"(제목 없음)","posts":"포스트","pages":"페이지","categories":"카테고리","tags":"태그"});
+        });</script><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"superSample":2,"width":150,"height":300,"position":"right","hOffset":0,"vOffset":-20},"mobile":{"show":false,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.2},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body></html>
