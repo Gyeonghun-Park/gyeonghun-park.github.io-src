@@ -37,8 +37,21 @@ tags: [CSS, Framer Motion]
       margin-bottom: 16px;
       z-index: 100;
     "
-    src="https://ys6hdm-5173.csb.app/"
-  ></iframe>
+    srcdoc='
+    <head>
+  <script
+    type="module"
+    crossorigin
+    src="/html/typing-animation/assets/index-1b6972df.js"
+  ></script>
+  <link
+    rel="stylesheet"
+    href="/html/typing-animation/assets/index-d0d57366.css"
+  />
+</head>
+<div id="root"></div>
+'
+></iframe>
 </div>
 
 <script>
