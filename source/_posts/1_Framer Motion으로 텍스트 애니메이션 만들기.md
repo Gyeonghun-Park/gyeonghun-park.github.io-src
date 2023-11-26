@@ -42,11 +42,11 @@ tags: [CSS, Framer Motion]
   <script
     type="module"
     crossorigin
-    src="/html/typing-animation/assets/index-1b6972df.js"
+    src="/assets/html/1/assets/index-1b6972df.js"
   ></script>
   <link
     rel="stylesheet"
-    href="/html/typing-animation/assets/index-d0d57366.css"
+    href="/assets/html/1/assets/index-d0d57366.css"
   />
 </head>
 <div id="root"></div>
